@@ -55,7 +55,7 @@ export default function MovieGrid({ movies }) {
 
       {/* Banner Section */}
       <div className={styles.banner}>
-        <img src={featuredMovie.poster} alt={featuredMovie.title} className={styles.bannerImage} />
+        <img src="https://res.cloudinary.com/dmbgykgpg/image/upload/v1742754500/fts5bvilgdhecbpb4bto.jpg" alt={featuredMovie.title} className={styles.bannerImage} />
         <div className={styles.bannerContent}>
           <h1>{featuredMovie.title}</h1>
           <p>{featuredMovie.description}</p>
