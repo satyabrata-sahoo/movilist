@@ -6,7 +6,7 @@ curl --location 'https://movilist-silk.vercel.app/api/customer/signin' \
     "email":"satya1@malinator.com"
 }'
 
-
+-------------------------------------------------------------------------------------------------------
 
 2.customer email verification (By OTP) API
 
@@ -17,6 +17,7 @@ curl --location 'https://movilist-silk.vercel.app/api/customer/verification' \
     "otp":2727
 }'
 
+-------------------------------------------------------------------------------------------------------
 
 3.Get Customer data API
 
@@ -29,6 +30,7 @@ curl --location --request GET 'https://movilist-silk.vercel.app/api/customer' \
 }'
 
 
+-------------------------------------------------------------------------------------------------------
 4.Admin Login API - login by email and password
 
 curl --location 'https://movilist-silk.vercel.app/api/admin/admin-login' \
@@ -39,6 +41,7 @@ curl --location 'https://movilist-silk.vercel.app/api/admin/admin-login' \
 }'
 
 
+-------------------------------------------------------------------------------------------------------
 5.Admin create admin user API
 
 curl --location 'https://movilist-silk.vercel.app/api/admin/admin-user' \
@@ -52,6 +55,7 @@ curl --location 'https://movilist-silk.vercel.app/api/admin/admin-user' \
 
 
 
+-------------------------------------------------------------------------------------------------------
 6.Admin update Admin user data API
 
 curl --location --request PUT 'https://movilist-silk.vercel.app/api/admin/admin-user' \
@@ -64,6 +68,7 @@ curl --location --request PUT 'https://movilist-silk.vercel.app/api/admin/admin-
 }'
 
 
+-------------------------------------------------------------------------------------------------------
 
 7. Admin Add Movie API
 
@@ -96,6 +101,7 @@ curl --location 'localhost:3000/api/movie' \
 
 
 
+-------------------------------------------------------------------------------------------------------
 8.Get Movie List API(include pagination filter search functionality)
 
 curl --location --request GET 'https://movilist-silk.vercel.app/api/movie/movie-list?movie_id=67dfd8df9179a37015b8b999&search=Dangal&page=1&per_page=10&status=Active' \
@@ -127,6 +133,7 @@ curl --location --request GET 'https://movilist-silk.vercel.app/api/movie/movie-
 
 
 
+-------------------------------------------------------------------------------------------------------
 
 
 
@@ -189,6 +196,7 @@ curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie' \
 
 
 
+-------------------------------------------------------------------------------------------------------
 
 
 10.customer add movie review API
@@ -215,6 +223,7 @@ curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/review
 }'
 
 
+-------------------------------------------------------------------------------------------------------
 
 12.Customer delete movie review API
 
@@ -229,6 +238,7 @@ curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/review
     "review": "Great movie.."
 }'
 
+-------------------------------------------------------------------------------------------------------
 
 13.Get Movie's review list API
 
@@ -260,6 +270,7 @@ curl --location --request GET 'https://movilist-silk.vercel.app/api/movie/review
 --form 'poster=@"/C:/Users/sahoo/Downloads/Baahubali-s-international-poster-released-1453880984-152.jpg"'
 
 
+-------------------------------------------------------------------------------------------------------
 
 14. customer Add like on a review API
 
@@ -273,6 +284,7 @@ curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/custem
 
 
 
+-------------------------------------------------------------------------------------------------------
 
 
 
