@@ -1,0 +1,67 @@
+.movieListContainer {
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
+.movieListHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 33%;
+}
+
+.addButton {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #218838;
+}
+
+.movieTable {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.movieTable th,
+.movieTable td {
+  padding: 15px;
+  text-align: left;
+}
+
+.movieTable thead {
+  background-color: #e9ecef;
+}
+
+.movieTable tr {
+  border-top: 1px solid #ddd;
+}
+
+.editButton {
+  color: #007bff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.deleteButton {
+  color: #dc3545;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,219 @@
+.container {
+    padding: 80px 5rem;
+    background-color: #1a1a1a;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  .poster {
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .headerContent {
+    flex: 1;
+  }
+  
+  .headerContent h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  
+  .tagline {
+    font-style: italic;
+    color: #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .details p {
+    margin: 10px 0;
+  }
+  
+  .details strong {
+    color: #ff4444;
+  }
+  
+  .castSection {
+    margin-bottom: 40px;
+  }
+  
+  .castSection h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .castList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .castItem {
+    margin: 10px 0;
+  }
+  
+  .reviewSection {
+    margin-bottom: 40px;
+  }
+  
+  .reviewSection h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .starEmpty {
+    font-size: 30px;
+    color: #555;
+    cursor: pointer;
+  }
+  
+  .starFilled {
+    font-size: 30px;
+    color: #ffcc00;
+    cursor: pointer;
+  }
+  
+  .ratingText {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  
+  .reviewForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .reviewInput {
+    width: 100%;
+    max-width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    resize: vertical;
+  }
+  
+  .submitButton {
+    padding: 10px 20px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+  }
+  
+  .submitButton:hover {
+    background-color: #cc3333;
+  }
+  
+  .reviewControls {
+    margin-bottom: 20px;
+  }
+  
+  .sortSelect {
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .reviewsList {
+    margin-bottom: 20px;
+  }
+  
+  .reviewItem {
+    padding: 15px;
+    background-color: #222;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .reviewActions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .likeButton, .likedButton, .editButton, .deleteButton, .saveButton, .cancelButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .likeButton {
+    background-color: #555;
+    color: white;
+  }
+  
+  .likedButton {
+    background-color: #ff4444;
+    color: white;
+  }
+  
+  .editButton {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .deleteButton {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .saveButton {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancelButton {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .reviewDate {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 5px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .pageButton {
+    padding: 5px 15px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pageButton:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
