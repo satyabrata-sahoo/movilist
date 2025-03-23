@@ -23,7 +23,7 @@ module.exports = {
       await RegisteredUser.save();
       return resHandler(res, 200,
         `We have sent you OTP on your Email Address: ${email}, Please use the same OTP to log in.`,
-        { customer_id: RegisteredUser._id, email: RegisteredUser.email }
+        { customer_id: RegisteredUser._id, email: RegisteredUser.email,otp:verificationCode }
       );
     }
     const newCustomer = await customerModel.addCustomer({ email: Email, email_verification_code: verificationCode });
@@ -32,6 +32,7 @@ module.exports = {
       {
         customer_id: newCustomer._id,
         email: newCustomer.email,
+        otp:verificationCode
       }
     );
   },

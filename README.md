@@ -1,40 +1,287 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+1.Customer Signin / signup API (sign up by email)
 
-## Getting Started
+curl --location 'https://movilist-silk.vercel.app/api/customer/signin' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email":"satya1@malinator.com"
+}'
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.customer email verification (By OTP) API
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+curl --location 'https://movilist-silk.vercel.app/api/customer/verification' \
+--header 'Content-Type: application/json' \
+--data '{
+    "customer_id":"67e02ae968071bb11f71cf1f",
+    "otp":2727
+}'
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+3.Get Customer data API
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+curl --location --request GET 'https://movilist-silk.vercel.app/api/customer' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data '{
+    "customer_id":"67ded28078da4754f39740b2",
+    "otp":5652
+}'
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+4.Admin Login API - login by email and password
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+curl --location 'https://movilist-silk.vercel.app/api/admin/admin-login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email":"satya@mailinator.com",
+    "password":"Satya@123"
+}'
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+5.Admin create admin user API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+curl --location 'https://movilist-silk.vercel.app/api/admin/admin-user' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email":"satya@mailinator.com",
+    "phone":7978402176,
+    "password":"Satya@123"
+}'
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+
+6.Admin update Admin user data API
+
+curl --location --request PUT 'https://movilist-silk.vercel.app/api/admin/admin-user' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "userId":"67def3c8d3e81c03ecc1fd1e",
+    "email":"satya@mailinator.com",
+    "phone":7978402176,
+    "password":"Satya@123"
+}'
+
+
+
+7. Admin Add Movie API
+
+curl --location 'localhost:3000/api/movie' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--form 'data="{
+  \"title\": \"Baahubali: The Beginning\",
+  \"industry\":\"Bollywod\",
+  \"description\": \"In the kingdom of Mahishmati, Shivudu grows up to become a strong and courageous young man. He sets out on a journey to discover his true identity and fulfill his destiny.\",
+  \"tagline\": \"Why did Kattappa kill Baahubali?\",
+  \"releaseDate\": \"2015-07-10\",
+  \"runtime\": 159,
+  \"genre\": [\"Action\", \"Adventure\", \"Drama\"],
+  \"language\": \"Telugu\",
+  \"certification\": \"U/A\",
+  \"director\": [\"S.S. Rajamouli\"],
+  \"writers\": [\"S.S. Rajamouli\", \"Vijayendra Prasad\"],
+  \"cast\": [
+    { \"name\": \"Prabhas\", \"role\": \"Shivudu / Mahendra Baahubali\" },
+    { \"name\": \"Rana Daggubati\", \"role\": \"Bhallaladeva\" },
+    { \"name\": \"Anushka Shetty\", \"role\": \"Devasena\" },
+    { \"name\": \"Tamannaah\", \"role\": \"Avanthika\" },
+    { \"name\": \"Ramya Krishnan\", \"role\": \"Sivagami\" }
+  ],
+  \"budget\": 120000000,
+  \"productionCompanies\": [\"Arka Media Works\"],
+  \"status\": \"Active\"
+}"' \
+--form 'poster=@"/C:/Users/sahoo/Downloads/Baahubali-s-international-poster-released-1453880984-152.jpg"'
+
+
+
+8.Get Movie List API(include pagination filter search functionality)
+
+curl --location --request GET 'https://movilist-silk.vercel.app/api/movie/movie-list?movie_id=67dfd8df9179a37015b8b999&search=Dangal&page=1&per_page=10&status=Active' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--form 'data="{
+  \"title\": \"Baahubali: The Beginning\",
+  \"industry\":\"Bollywod\",
+  \"description\": \"In the kingdom of Mahishmati, Shivudu grows up to become a strong and courageous young man. He sets out on a journey to discover his true identity and fulfill his destiny.\",
+  \"tagline\": \"Why did Kattappa kill Baahubali?\",
+  \"releaseDate\": \"2015-07-10\",
+  \"runtime\": 159,
+  \"genre\": [\"Action\", \"Adventure\", \"Drama\"],
+  \"language\": \"Telugu\",
+  \"certification\": \"U/A\",
+  \"director\": [\"S.S. Rajamouli\"],
+  \"writers\": [\"S.S. Rajamouli\", \"Vijayendra Prasad\"],
+  \"cast\": [
+    { \"name\": \"Prabhas\", \"role\": \"Shivudu / Mahendra Baahubali\" },
+    { \"name\": \"Rana Daggubati\", \"role\": \"Bhallaladeva\" },
+    { \"name\": \"Anushka Shetty\", \"role\": \"Devasena\" },
+    { \"name\": \"Tamannaah\", \"role\": \"Avanthika\" },
+    { \"name\": \"Ramya Krishnan\", \"role\": \"Sivagami\" }
+  ],
+  \"budget\": 120000000,
+  \"productionCompanies\": [\"Arka Media Works\"],
+  \"status\": \"Active\"
+}"' \
+--form 'poster=@"/C:/Users/sahoo/Downloads/Baahubali-s-international-poster-released-1453880984-152.jpg"'
+
+
+
+
+
+
+9.Admin update movie data API
+
+curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--form 'data="{
+    \"movie_id\": \"67dfd8df9179a37015b8b999\",
+    \"title\": \"Dangal\",
+    \"industry\":\"Bollywod\",
+    \"description\": \"Former wrestler Mahavir Singh Phogat trains his daughters Geeta and Babita to become world-class wrestlers.\",
+    \"tagline\": \"The fight for gold is a fight for pride.\",
+    \"releaseDate\": \"2016-12-21\",
+    \"runtime\": 161,
+    \"genre\": [
+        \"Biography\",
+        \"Drama\",
+        \"Sport\"
+    ],
+    \"language\": \"Hindi\",
+    \"certification\": \"U/A\",
+    \"director\": [
+        \"Nitesh Tiwari\"
+    ],
+    \"writers\": [
+        \"Nitesh Tiwari\",
+        \"Piyush Gupta\",
+        \"Shreyas Jain\",
+        \"Nikhil Meharotra\"
+    ],
+    \"cast\": [
+        {
+            \"name\": \"Aamir Khan\",
+            \"role\": \"Mahavir Singh Phogat\"
+        },
+        {
+            \"name\": \"Sakshi Tanwar\",
+            \"role\": \"Daya Kaur\"
+        },
+        {
+            \"name\": \"Fatima Sana Shaikh\",
+            \"role\": \"Geeta Phogat\"
+        },
+        {
+            \"name\": \"Sanya Malhotra\",
+            \"role\": \"Babita Kumari\"
+        }
+    ],
+    \"budget\": 70000000,
+    \"productionCompanies\": [
+        \"Aamir Khan Productions\",
+        \"UTV Motion Pictures\"
+    ],
+    \"status\": \"Active\"
+}"' \
+--form 'poster=@"/C:/Users/sahoo/Downloads/images (1).jpeg"'
+
+
+
+
+
+
+
+10.customer add movie review API
+
+curl --location 'https://movilist-silk.vercel.app/api/movie/review' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data '{
+    "movie_id":"67dfdf9f9179a37015b8b9e2",
+    "rating":4,
+    "review":"Great movie"
+}'
+
+
+11.Customer Update movie review
+curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/review' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data '{
+    "review_id": "67e022e0de3dfe8a881c36c9",
+    "movie_id": "67dfdf9f9179a37015b8b9e2",
+    "rating": 3,
+    "review": "Great movie.."
+}'
+
+
+
+12.Customer delete movie review API
+
+curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/review' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data '{
+    "action":"delete",
+    "review_id": "67e0294cde3dfe8a881c3740",
+    "movie_id": "67dfdf9f9179a37015b8b9e2",
+    "rating": 3,
+    "review": "Great movie.."
+}'
+
+
+13.Get Movie's review list API
+
+curl --location --request GET 'https://movilist-silk.vercel.app/api/movie/review-list?movie_id=67dfdf9f9179a37015b8b9e2&page=1&per_page=10' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--form 'data="{
+  \"title\": \"Baahubali: The Beginning\",
+  \"industry\":\"Bollywod\",
+  \"description\": \"In the kingdom of Mahishmati, Shivudu grows up to become a strong and courageous young man. He sets out on a journey to discover his true identity and fulfill his destiny.\",
+  \"tagline\": \"Why did Kattappa kill Baahubali?\",
+  \"releaseDate\": \"2015-07-10\",
+  \"runtime\": 159,
+  \"genre\": [\"Action\", \"Adventure\", \"Drama\"],
+  \"language\": \"Telugu\",
+  \"certification\": \"U/A\",
+  \"director\": [\"S.S. Rajamouli\"],
+  \"writers\": [\"S.S. Rajamouli\", \"Vijayendra Prasad\"],
+  \"cast\": [
+    { \"name\": \"Prabhas\", \"role\": \"Shivudu / Mahendra Baahubali\" },
+    { \"name\": \"Rana Daggubati\", \"role\": \"Bhallaladeva\" },
+    { \"name\": \"Anushka Shetty\", \"role\": \"Devasena\" },
+    { \"name\": \"Tamannaah\", \"role\": \"Avanthika\" },
+    { \"name\": \"Ramya Krishnan\", \"role\": \"Sivagami\" }
+  ],
+  \"budget\": 120000000,
+  \"productionCompanies\": [\"Arka Media Works\"],
+  \"status\": \"Active\"
+}"' \
+--form 'poster=@"/C:/Users/sahoo/Downloads/Baahubali-s-international-poster-released-1453880984-152.jpg"'
+
+
+
+14. customer Add like on a review API
+
+curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/custemr-like-review' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data '{
+    "action":"add_like",
+    "review_id": "67e029ba68071bb11f71cf05"
+}'
+
+
+
+
+
+
+15.Customer remove like on his given like
+
+curl --location --request PUT 'https://movilist-silk.vercel.app/api/movie/custemr-like-review' \
+--header 'token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50X2lkIjoiNjdlMDJhZTk2ODA3MWJiMTFmNzFjZjFmIiwic2VjcmV0X2tleSI6IjA4NWNmY2QyYTFlNTg2NThhYzE3MTNiMzI5YWU2YjJkIiwiaWF0IjoxNzQyNzQ0MzI3LCJleHAiOjE3NDM2MDgzMjd9.ZHuWgvU5sezYo5G4PG6RzmEtUpM-kZ1iiQ5hTlUfSmM' \
+--header 'Content-Type: application/json' \
+--data '{
+    "action":"remove_like",
+    "review_id": "67e029ba68071bb11f71cf05"
+}'
