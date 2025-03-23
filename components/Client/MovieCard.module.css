@@ -1,4 +1,3 @@
-/* Existing MovieCard Styles */
 .movieCard {
   position: relative;
   width: 250px;
@@ -62,10 +61,8 @@
   background-color: #c82333;
 }
 
-/* Updated MovieGrid Styles */
 .movieGridContainer {
-  padding: 20px 10rem; /* 3rem left and right, 20px top and bottom */
-  /* Alternative: padding: 20px 113px; for exact 3cm */
+  padding: 20px 10rem;
   background-color: #1a1a1a;
 }
 
@@ -82,7 +79,6 @@
   gap: 20px;
 }
 
-/* Navbar Styles */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -136,7 +132,6 @@
   font-weight: bold;
 }
 
-/* Banner Styles */
 .banner {
   position: relative;
   height: 400px;
@@ -183,7 +178,6 @@
   background-color: #cc3333;
 }
 
-/* Industry Section Styles */
 .industrySection {
   margin-bottom: 40px;
 }
@@ -193,4 +187,158 @@
   color: white;
   margin-bottom: 15px;
   text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .movieCard {
+    width: 200px;
+    height: 300px;
+  }
+
+  .movieCardContent h3 {
+    font-size: 16px;
+  }
+
+  .movieCardContent p {
+    font-size: 12px;
+  }
+
+  .infoButton {
+    padding: 4px 12px;
+    font-size: 14px;
+  }
+
+  .movieGridContainer {
+    padding: 15px 2rem;
+  }
+
+  .movieGridTitle {
+    font-size: 20px;
+  }
+
+  .movieGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .navbar {
+    padding: 10px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navLinks li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .navButton, .active {
+    font-size: 14px;
+    padding: 5px 0;
+  }
+
+  .banner {
+    height: 300px;
+  }
+
+  .bannerContent {
+    left: 20px;
+    bottom: 15px;
+  }
+
+  .bannerContent h1 {
+    font-size: 28px;
+  }
+
+  .bannerContent p {
+    font-size: 14px;
+    max-width: 300px;
+  }
+
+  .watchButton {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .industryTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movieCard {
+    width: 150px;
+    height: 225px;
+  }
+
+  .movieCardContent h3 {
+    font-size: 14px;
+  }
+
+  .movieCardContent p {
+    font-size: 10px;
+  }
+
+  .infoButton {
+    padding: 3px 10px;
+    font-size: 12px;
+  }
+
+  .movieGridContainer {
+    padding: 10px 1rem;
+  }
+
+  .movieGridTitle {
+    font-size: 18px;
+  }
+
+  .movieGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .navButton, .active {
+    font-size: 12px;
+  }
+
+  .banner {
+    height: 200px;
+  }
+
+  .bannerContent {
+    left: 15px;
+    bottom: 10px;
+  }
+
+  .bannerContent h1 {
+    font-size: 20px;
+  }
+
+  .bannerContent p {
+    font-size: 12px;
+    max-width: 200px;
+  }
+
+  .watchButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .industryTitle {
+    font-size: 16px;
+  }
 }
