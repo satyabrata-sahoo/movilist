@@ -4,6 +4,7 @@ import styles from './MovieCard.module.css';
 import Navbar from './Navbar';
 
 export default function MovieGrid({ movies }) {
+  console.log("movies=====",movies)
   const router = useRouter();
 
   const handleNavigation = (path) => {
@@ -16,7 +17,7 @@ export default function MovieGrid({ movies }) {
     acc[industry].push(movie);
     return acc;
   }, {}) || {};
-
+console.log("moviesByIndustry",moviesByIndustry)
   const featuredMovie = movies?.[0] || {};
 
   return (

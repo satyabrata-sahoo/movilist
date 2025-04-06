@@ -87,7 +87,7 @@ export default function MovieDetails({ movie }) {
           <div className={styles.details}>
             <p><strong>Release Date:</strong> {new Date(movie.releaseDate).toLocaleDateString()}</p>
             <p><strong>Runtime:</strong> {movie.runtime} min</p>
-            <p><strong>Genre:</strong> {movie.genre.join(', ')}</p>
+            {/* <p><strong>Genre:</strong> {movie.genre.join(', ')}</p> */}
             <p><strong>Language:</strong> {movie.language}</p>
             <p><strong>Certification:</strong> {movie.certification}</p>
             <p><strong>Director:</strong> {movie.director.join(', ')}</p>

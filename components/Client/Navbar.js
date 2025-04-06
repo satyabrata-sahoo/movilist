@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.logo}>Movie App</div>
+      <div className={styles.logo}>Movie Mosaic</div>
       <ul className={styles.navLinks}>
         <li>
           <button

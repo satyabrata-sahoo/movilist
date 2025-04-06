@@ -1,113 +1,65 @@
 import MovieList from "@/components/Admin/MovieList";
 import MovieGrid from "@/components/Client/MovieGrid";
-
-const movies = [
-  {
-    _id: "67dfdf9f9179a37015b8b9e2",
-    title: "Lagaan",
-    description: "In 1893, Indian villagers challenge their British rulers to a game of cricket to avoid paying oppressive taxes.",
-    genre: ["Drama", "Sport", "Musical"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742725024/wggzuwp2tc4fys6ck9vu.jpg",
-    industry: "Bollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e2",
-    title: "Lagaan",
-    description: "In 1893, Indian villagers challenge their British rulers to a game of cricket to avoid paying oppressive taxes.",
-    genre: ["Drama", "Sport", "Musical"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742725024/wggzuwp2tc4fys6ck9vu.jpg",
-    industry: "Bollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e2",
-    title: "Lagaan",
-    description: "In 1893, Indian villagers challenge their British rulers to a game of cricket to avoid paying oppressive taxes.",
-    genre: ["Drama", "Sport", "Musical"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742725024/wggzuwp2tc4fys6ck9vu.jpg",
-    industry: "Bollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e2",
-    title: "Lagaan",
-    description: "In 1893, Indian villagers challenge their British rulers to a game of cricket to avoid paying oppressive taxes.",
-    genre: ["Drama", "Sport", "Musical"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742725024/wggzuwp2tc4fys6ck9vu.jpg",
-    industry: "Bollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e3",
-    title: "Inception",
-    description: "Earth's mightiest heroes must come together to stop an alien invasion.",
-    genre: ["Action", "Sci-Fi"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742729772/hdk1oinp13zbb0apnaag.jpg",
-    industry: "Hollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e3",
-    title: "Inception",
-    description: "Earth's mightiest heroes must come together to stop an alien invasion.",
-    genre: ["Action", "Sci-Fi"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742729772/hdk1oinp13zbb0apnaag.jpg",
-    industry: "Hollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e3",
-    title: "Inception",
-    description: "Earth's mightiest heroes must come together to stop an alien invasion.",
-    genre: ["Action", "Sci-Fi"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742729772/hdk1oinp13zbb0apnaag.jpg",
-    industry: "Hollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e3",
-    title: "Inception",
-    description: "Earth's mightiest heroes must come together to stop an alien invasion.",
-    genre: ["Action", "Sci-Fi"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742729772/hdk1oinp13zbb0apnaag.jpg",
-    industry: "Hollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e4",
-    title: "Baahubali",
-    description: "A prince rises to reclaim his kingdom.",
-    genre: ["Action", "Drama"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742730174/lfdnge9ovsds6qdqra6x.jpg",
-    industry: "Tollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e4",
-    title: "Baahubali",
-    description: "A prince rises to reclaim his kingdom.",
-    genre: ["Action", "Drama"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742730174/lfdnge9ovsds6qdqra6x.jpg",
-    industry: "Tollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e4",
-    title: "Baahubali",
-    description: "A prince rises to reclaim his kingdom.",
-    genre: ["Action", "Drama"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742730174/lfdnge9ovsds6qdqra6x.jpg",
-    industry: "Tollywood",
-  },
-  {
-    _id: "67dfdf9f9179a37015b8b9e4",
-    title: "Baahubali",
-    description: "A prince rises to reclaim his kingdom.",
-    genre: ["Action", "Drama"],
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742730174/lfdnge9ovsds6qdqra6x.jpg",
-    industry: "Tollywood",
-  },
-];
+import Navbar from "@/components/Client/Navbar";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`/api/movie/movie-list?status=Active`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json', // Fixed typo: 'Conetent-Type' -> 'Content-Type'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch movies: ${response.status}`);
+        }
+
+        const data = await response.json(); // Added await here
+        console.log("data", data);
+        setMovies(data.data.pageResult || []); // Added fallback to empty array if data.data is undefined
+      } catch (error) {
+        setError(error.message); // Changed to error.message for better error handling
+        console.error("Error fetching movies:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  // Conditional rendering based on state
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <div>Loading movies...</div>
+      </>
+    );
+  }
+
+  if (error) {
+    return (
+      <>
+        <Navbar />
+        <div>Error: {error}</div>
+      </>
+    );
+  }
+
   return (
     <>
-    {/* <Navbar /> */}
-   <MovieGrid movies={movies} />
-
-   {/* <MovieList/> */}
-    {/* <h1>Movies List......</h1> */}
+      {/* <Navbar />  */}
+      <MovieGrid movies={movies} />
     </>
   );
 }

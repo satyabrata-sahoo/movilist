@@ -42,7 +42,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             console.log(query)
             let page = query?.page ? query.page : 1;
-            let perPage = query?.per_page ? query.per_page : 10;
+            let perPage = query?.per_page ? query.per_page : 12;
             let search = query?.search ? query.search : "";
             let arr = [
                 {

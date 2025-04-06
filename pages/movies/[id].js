@@ -1,45 +1,87 @@
 import MovieDetails from '../../components/Client/MovieDetails';
 
-export default function MoviePage({ movie }) {
+// Utility function to fetch movie with better error details
+const fetchMovie = async (id) => {
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/movie/movie-list?movie_id=${id}`;
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`HTTP error! status: ${res.status} - ${errorText}`);
+    }
+
+    return res.json();
+  } catch (error) {
+    throw error; // Re-throw for handling in getServerSideProps
+  }
+};
+
+export default function MoviePage({ movie, error }) {
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-red-500 text-center">
+          <h2 className="text-xl font-bold">Error</h2>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!movie) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-gray-500">Movie not found</div>
+      </div>
+    );
+  }
+
   return <MovieDetails movie={movie} />;
 }
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
-  // Simulate fetching movie data (replace with your API call)
-  const movieData = {
-    title: "Baahubali: The Beginning",
-    description: "In the kingdom of Mahishmati, Shivudu grows up to become a strong and courageous young man. He sets out on a journey to discover his true identity and fulfill his destiny.",
-    tagline: "Why did Kattappa kill Baahubali?",
-    releaseDate: "2015-07-10T00:00:00.000Z",
-    runtime: 159,
-    genre: ["Action", "Adventure", "Drama"],
-    language: "Telugu",
-    certification: "U/A",
-    director: ["S.S. Rajamouli"],
-    writers: ["S.S. Rajamouli", "Vijayendra Prasad"],
-    cast: [
-      { name: "Prabhas", role: "Shivudu / Mahendra Baahubali", _id: "67dff3bc53e89368c2023c81" },
-      { name: "Rana Daggubati", role: "Bhallaladeva", _id: "67dff3bc53e89368c2023c82" },
-      { name: "Anushka Shetty", role: "Devasena", _id: "67dff3bc53e89368c2023c83" },
-      { name: "Tamannaah", role: "Avanthika", _id: "67dff3bc53e89368c2023c84" },
-      { name: "Ramya Krishnan", role: "Sivagami", _id: "67dff3bc53e89368c2023c85" },
-    ],
-    budget: 120000000,
-    productionCompanies: ["Arka Media Works"],
-    status: "Active",
-    _id: "67dff3bc53e89368c2023c80",
-    poster: "https://res.cloudinary.com/dmbgykgpg/image/upload/v1742730174/lfdnge9ovsds6qdqra6x.jpg",
-  };
+  console.log("id==============", id);
 
-  // Replace with actual API fetch
-  // const res = await fetch(`http://your-api-endpoint/movies/${id}`);
-  // const movieData = await res.json();
-//   const movie = movieData._id === id ? movieData : null;
-const movie = movieData
-  return {
-    props: {
-      movie,
-    },
-  };
+  try {
+    const movieData = await fetchMovie(id);
+    
+    let movie = null;
+    if (movieData?.data?.pageResult) {
+      if (Array.isArray(movieData.data.pageResult)) {
+        movie = movieData.data.pageResult.find(m => m?._id === id) || null;
+      } else {
+        console.warn('pageResult is not an array:', movieData.data.pageResult);
+      }
+    } else if (movieData?._id === id) {
+      movie = movieData;
+    } else {
+      console.log('Unexpected response structure:', movieData);
+    }
+
+    if (!movie) {
+      console.log(`Movie with id ${id} not found in response`);
+    }
+
+    return {
+      props: {
+        movie,
+        error: null,
+      },
+    };
+  } catch (error) {
+    console.error(`Error fetching movie ${id}:`, error.message);
+    return {
+      props: {
+        movie: null,
+        error: `Failed to load movie: ${error.message}`,
+      },
+    };
+  }
 }

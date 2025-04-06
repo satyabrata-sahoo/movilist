@@ -17,7 +17,8 @@ const apiRouter = nextConnect({
 apiRouter
     .use(async (req, res, next) => {
         await dbConnect();
-         await adminAuthHandler(req, res, next);
+        //  await adminAuthHandler(req, res, next);
+        next()
     })
     .use(upload.single("poster"))
     .post(catchAsync(async (req, res) => {
