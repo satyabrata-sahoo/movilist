@@ -2,7 +2,7 @@ import MovieDetails from '../../components/Client/MovieDetails';
 
 // Utility function to fetch movie with better error details
 const fetchMovie = async (id) => {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/movie/movie-list?movie_id=${id}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/movie/movie-list?movie_id=${id}`;
   try {
     const res = await fetch(apiUrl, {
       method: 'GET',
